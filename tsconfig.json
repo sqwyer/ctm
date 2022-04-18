@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "rootDirs": ["src","test"],
+        "outDir": "dist",
+        "module": "CommonJS",
+        "noImplicitAny": false
+    }
+}
