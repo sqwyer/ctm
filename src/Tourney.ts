@@ -7,9 +7,9 @@ function parse(content: string) {
     lines.splice(0, 1);
     for(let i = 0; i < lines.length; i++) {
         let parts = lines[i].split(',');
-        let self: any = {};
+        let self: any = {_line: i+1};
         for(let k = 0; k < parts.length; k++) {
-            self[keys[k]] = parts[k];
+            self[keys[k].toLowerCase()] = parts[k];
         }
         result.push(self);
     }
@@ -19,6 +19,18 @@ function parse(content: string) {
 class Tourney {
     public users: Array<any> = [];
     public files: Array<any> = [];
+
+    public generatrPairs(next?: Function) {
+        let sorted = this.users.sort((a, b) => b.rating - a.rating);
+        if (sorted.length % 2 != 0) sorted.splice(0, 1);
+        let split = [sorted.splice(0, sorted.length/2), sorted];
+        let pairs = [];
+        for(let i = 0; i < sorted.length/2; i++) {
+            pairs.push([split[0][i], split[1][i]]);
+        }
+        if(next) next(pairs);
+        return pairs;
+    }
 
     public addCsvFile(path: PathLike, next?: Function) {
         readFile(path, (err?: NodeJS.ErrnoException|null, data?: Buffer|null) => {
