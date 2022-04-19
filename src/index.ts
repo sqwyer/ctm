@@ -1,3 +1,3 @@
-import { Tourney } from './Tourney';
+import { Tourney, parse, pair } from './Tourney';
 
-export { Tourney };
+export { Tourney, parse, pair };
