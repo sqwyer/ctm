@@ -1,8 +1,21 @@
-import { PathLike, readFile } from 'fs';
+import { PathLike, readFile, writeFile } from 'fs';
+
+type Player = {
+    _line: number,
+    player: string,
+    rating: any,
+    score?: number
+}
+
+type Pairings = Array<Array<Player>>;
+
+type PlayerFile = {
+    path: PathLike,
+    content: Array<Player>
+}
 
 function parse(content: string) {
     let lines = content.split('\n');
-    // lines.map(self => self.substring(0, self.length - 2));
     let result: Array<any> = [];
     let keys = lines[0].split(',').map((self: string) => self.trim());
     lines.splice(0, 1);
@@ -17,21 +30,24 @@ function parse(content: string) {
     return result;
 }
 
-function pair(list: Array<any>, next?: Function) {
-    list.sort((a, b) => b.rating - a.rating);
-    if (list.length % 2 != 0) list.splice(0, 1);
-    let split = [list.splice(0, list.length/2), list];
+function pair(list: Array<Player>, next?: Function) {
+    list.sort((a, b) => Number(b.rating) - Number(a.rating));
     let pairs = [];
-    for(let i = 0; i < list.length/2; i++) {
-        pairs.push([split[0][i], split[1][i]]);
+    if (list.length % 2 != 0) {
+        pairs.push([list[list.length-1], {player: null, rating: null, score: null, _line: null}]);
+        list.splice(list.length, 1);
+    }
+    let split = [list.splice(0, list.length/2), list];
+    for(let i = 0; i < split[0].length; i++) {
+        pairs.unshift([split[0][i], split[1][i]]);
     }
     if(next) next(pairs);
     return pairs;
 }
 
 class Tourney {
-    public users: Array<any> = [];
-    public files: Array<any> = [];
+    public users: Array<Player> = [];
+    public files: Array<PlayerFile> = [];
 
     public generatrPairs(next?: Function) {
         return pair(this.users, next || undefined);
@@ -50,6 +66,29 @@ class Tourney {
                 if(next) next(null, parsed);
             }
         });
+    }
+
+    public printPairs(pairs: Pairings, path: PathLike, next?: Function) {
+        let content = `Score,White,Score,Black`;
+        for(let i = 0; i < pairs.length; i++) {
+            content+=`\n${pairs[i][0].score},${pairs[i][0].player},${pairs[i][1].score},${pairs[i][1].player}`;
+        }
+        writeFile(path, content, (...args) => {
+            if(next) next(...args);
+            else if(args[0]) throw args[0];
+        });
+    }
+
+    public getLinesFromPlayer(player: string) {
+        return this.users.filter(self => self.player === player).map(s => s._line);
+    }
+
+    public assignScore(line: number, score: number) {
+        console.log(this.users);
+        let elem = this.users.find(self => self._line === line);
+        let index = this.users.indexOf(elem);
+
+        this.users[index].score = score;
     }
 }
 
