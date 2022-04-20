@@ -69,9 +69,9 @@ class Tourney {
     }
 
     public printPairs(pairs: Pairings, path: PathLike, next?: Function) {
-        let content = `ScoreW,White,ScoreB,Black`;
+        let content = `Board,ScoreW,White,ScoreB,Black`;
         for(let i = 0; i < pairs.length; i++) {
-            content+=`\n${pairs[i][0].score},${pairs[i][0].player},${pairs[i][1].score},${pairs[i][1].player}`;
+            content+=`\n${i+1},${pairs[i][0].score},${pairs[i][0].player},${pairs[i][1].score},${pairs[i][1].player}`;
         }
         writeFile(path, content, (...args) => {
             if(next) next(...args);
