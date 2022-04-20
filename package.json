@@ -7,13 +7,15 @@
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
-    "test": "npx ts-node test/index.ts"
+    "test": "npx ts-node test/index.ts",
+    "serve": "npx ts-node web/serve.ts"
   },
   "keywords": [],
   "author": "",
   "license": "",
   "description": "",
   "dependencies": {
-    "csv-parse": "^5.0.4"
+    "csv-parse": "^5.0.4",
+    "express": "^4.17.3"
   }
 }
