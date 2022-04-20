@@ -69,7 +69,7 @@ class Tourney {
     }
 
     public printPairs(pairs: Pairings, path: PathLike, next?: Function) {
-        let content = `Score,White,Score,Black`;
+        let content = `ScoreW,White,ScoreB,Black`;
         for(let i = 0; i < pairs.length; i++) {
             content+=`\n${pairs[i][0].score},${pairs[i][0].player},${pairs[i][1].score},${pairs[i][1].player}`;
         }
