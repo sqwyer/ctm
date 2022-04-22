@@ -3,7 +3,7 @@ import * as express from 'express';
 const app = express();
 
 app.get('/', (req, res) => {
-    res.sendFile(`${__dirname}/../views/index.html`)
+    res.sendFile(`${__dirname}/view/index.html`);
 });
 
 app.listen(3000, function() {
