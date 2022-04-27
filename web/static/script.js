@@ -1,4 +1,7 @@
-function popup(title, message, buttons) {
+function popup(options) {
+    let title = options.title || null;
+    let message = options.message || null;
+    let buttons = options.buttons || null;
     let _div = () => document.createElement('div');
     let _p = () => document.createElement('p');
     let div = _div();
@@ -66,9 +69,13 @@ function popup(title, message, buttons) {
     document.body.appendChild(div);
 }
 
-popup('Some title', 'Hello there, this is a test popup!', [
-    {type: 'ok', text: 'Hi!', class: 'btn-ok', action: () => {
-        alert('hi!');
-    }},
-    {type: 'exit', text: 'Close'}
-]);
+popup({
+    title: 'Some title',
+    message: 'Hello there, this is a test popup!',
+    buttons: [
+        {type: 'ok', text: 'Hi!', class: 'btn-ok', action: () => {
+            alert('hi!');
+        }},
+        {type: 'exit', text: 'Close'}
+    ]
+});
