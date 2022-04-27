@@ -1,0 +1,107 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    padding: 1.5em 2.5em;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table td, table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table tr:nth-child(even){background-color: #f2f2f2;}
+table tr:nth-child(odd) td:hover {
+    cursor: pointer;
+    background: #f8f8f8;
+}
+table tr:nth-child(even) td:hover {
+    cursor: pointer;
+    background: #e8e8e8;
+}
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    /* background-color: #04AA6D; */
+    /* color: white; */
+}
+
+#full-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #00000030;
+}
+
+.popup {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    width: 25%;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.popup > div {
+    /* padding: .5em 1em; */
+    padding: 1em;
+    border-bottom: 1px solid #eee;
+}
+
+.popup > div:last-child {
+    border-bottom: none;
+}
+
+.popup p {
+    color: #000;
+}
+
+.popup p.title {
+    font-weight: bold;
+}
+
+.popup .buttons {
+    display: flex;
+    justify-content: right;
+    justify-items: right;
+    gap: 0.25em;
+}
+
+.popup button {
+    padding: 0.5em 1em;
+    border: none;
+    cursor: pointer;
+    background: #3355FF;
+    color: #fff;
+    transition: 0.2s background;
+    border-radius: 8px;
+}
+
+.popup button:hover {
+    background: #3355FF;
+}
+
+.popup button.btn-exit {
+    background: #FF5050;
+}
+
+.popup button.btn-exit:hover {
+    background: #FF2C2C;
+}
