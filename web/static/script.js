@@ -95,12 +95,15 @@ function clickOnElem(elem) {
     popup({
         title: 'Edit player',
         message: `
-            <input placeholder="Player Name" value="${splits[0]}" type="text">
-            <input placeholder="Rating" value="${splits[1]}" type="number">
+            <input id="edit-name" placeholder="Player Name" value="${splits[0]}" type="text">
+            <input id="edit-rating" placeholder="Rating" value="${splits[1]}" type="number">
         `,
         buttons: [
             {type: 'ok', text: 'Save', action: () => {
+                let name = document.getElementById('edit-name').value;
+                let rating = document.getElementById('edit-rating').value;
 
+                // use this stuff to do this later or something
             }},
             {type: 'exit', text: 'Cancel'}
         ]
