@@ -105,3 +105,19 @@ table th {
 .popup button.btn-exit:hover {
     background: #FF2C2C;
 }
+
+.popup input {
+    display: block;
+    padding: 0.5em;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.popup > div *:not(:first-child) {
+    margin-top: .5em;
+}
+
+.popup button {
+    margin-top: 0!important;
+}
