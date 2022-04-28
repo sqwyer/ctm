@@ -1,4 +1,7 @@
 function popup(options) {
+
+    if(document.getElementById('popup')) document.getElementById('popup').remove();
+
     let title = options.title || null;
     let message = options.message || null;
     let buttons = options.buttons || null;
@@ -84,23 +87,24 @@ let playersElem = document.getElementById('players');
 function clickOnElem(elem) {
     let parent = elem.parentElement;
     let children = parent.children;
-    for(let i = 1; i < children.length-1; i++) {
-        let child = children[i];
-        let splits = child.innerText.split('\t');
-        popup({
-            title: 'Edit player',
-            message: `
-                <input placeholder="Player Name" value="${splits[0]}" type="text">
-                <input placeholder="Rating" value="${splits[1]}" type="number">
-            `,
-            buttons: [
-                {type: 'ok', text: 'Save', action: () => {
+    
+    console.log(children);
 
-                }},
-                {type: 'exit', text: 'Cancel'}
-            ]
-        })
-    }
+    let splits = [...children].map(self => self.innerText);
+
+    popup({
+        title: 'Edit player',
+        message: `
+            <input placeholder="Player Name" value="${splits[0]}" type="text">
+            <input placeholder="Rating" value="${splits[1]}" type="number">
+        `,
+        buttons: [
+            {type: 'ok', text: 'Save', action: () => {
+
+            }},
+            {type: 'exit', text: 'Cancel'}
+        ]
+    })
 
     // popup({
     //     title: 'Some title',
@@ -128,8 +132,10 @@ function addPlayer(player, rating) {
     tr.appendChild(tdP);
 }
 
-for(let i = 0; i < playersElem.children[0].children.length; i++) {
+for(let i = 1; i < playersElem.children[0].children.length; i++) {
     let child = playersElem.children[0].children[i];
-
-    child.addEventListener('click', () => clickOnElem(child))
+    for(let k = 0; k < child.children.length; k++) {
+        let childLast = child.children[k];
+        childLast.addEventListener('click', () => clickOnElem(childLast))
+    }
 }
