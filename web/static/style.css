@@ -112,6 +112,7 @@ table th {
     border: 1px solid #eee;
     border-radius: 8px;
     width: 100%;
+    outline: 0!important;
 }
 
 .popup > div *:not(:first-child) {
