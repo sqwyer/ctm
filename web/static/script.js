@@ -130,6 +130,27 @@ function addPlayer(player, rating) {
     tdP.innerText = rating;
     tdP.addEventListener('click', () => clickOnElem(tdP));
     tr.appendChild(tdP);
+
+    playersElem.children[0].appendChild(tr);
+}
+
+function addPlayerPopup() {
+    popup({
+        title: 'Add new player',
+        message: `
+            <input id="create-name" placeholder="Player Name" type="text">
+            <input id="create-rating" placeholder="Rating" type="number">
+        `,
+        buttons: [
+            {type: 'ok', text: 'Save', action: () => {
+                let name = document.getElementById('create-name').value;
+                let rating = document.getElementById('create-rating').value;
+
+                addPlayer(name, rating);
+            }},
+            {type: 'exit', text: 'Cancel'}
+        ]
+    })
 }
 
 for(let i = 1; i < playersElem.children[0].children.length; i++) {
