@@ -93,17 +93,22 @@ function clickOnElem(elem) {
     let splits = [...children].map(self => self.innerText);
 
     popup({
-        title: 'Edit player',
+        title: `Edit player #${splits[0]}`,
         message: `
-            <input id="edit-name" placeholder="Player Name" value="${splits[0]}" type="text">
-            <input id="edit-rating" placeholder="Rating" value="${splits[1]}" type="number">
+            <input id="edit-name" placeholder="Player Name" value="${splits[1]}" type="text">
+            <input id="edit-rating" placeholder="Rating" value="${splits[2]}" type="number">
         `,
         buttons: [
             {type: 'ok', text: 'Save', action: () => {
                 let name = document.getElementById('edit-name').value;
                 let rating = document.getElementById('edit-rating').value;
 
-                // use this stuff to do this later or something
+                let elem = getPlayerElemById(splits[0]);
+
+                elem.children[1].innerText = name;
+                elem.children[2].innerText = rating;
+
+                // console.log(getPlayerElemById(splits[0]));
             }},
             {type: 'exit', text: 'Cancel'}
         ]
@@ -154,6 +159,13 @@ function addPlayerPopup() {
             {type: 'exit', text: 'Cancel'}
         ]
     })
+}
+
+function getPlayerElemById(id) {
+    for(let i = 0; i < playersElem.children[0].children.length; i++) {
+        let child = playersElem.children[0].children[i];
+        if(Number(id) === Number(child.children[0].innerText)) return child;
+    }
 }
 
 for(let i = 1; i < playersElem.children[0].children.length; i++) {
