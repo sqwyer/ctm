@@ -122,3 +122,7 @@ table th {
 .popup button {
     margin-top: 0!important;
 }
+
+.light {
+    color: #505050;
+}
