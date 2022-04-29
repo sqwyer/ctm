@@ -1,11 +1,11 @@
-Board,ScoreW,White,ScoreB,Black
+board,scorewhite,whiteplayer,scoreblack,scoreblack
 1,1,J,0,Q
 2,0,M,1,B
-3,0,H,1,O
-4,0,I,1,G
+3,1,H,0,O
+4,1,I,0,G
 5,1,E,0,P
 6,0,C,1,A
 7,1,D,0,K
 8,0,R,1,F
-9,0,S,1,L
+9,1,S,0,L
 10,1,N,0,null
