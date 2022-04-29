@@ -1,6 +1,6 @@
 # Chess Tournament Manager
 
-#### Starting the webserver
+<!-- #### Starting the webserver
 > Note: This will probably just be a static site later
 
 ##### Ensure NodeJS & NPM are installed:
@@ -22,7 +22,7 @@ npm run serve
 ```
 
 ##### View Site
-Go to `http://localhost:3000` in your web browser of choice.
+Go to `http://localhost:3000` in your web browser of choice. -->
 
 #### Notes
 - `web/` directory will hold all code for the web version
