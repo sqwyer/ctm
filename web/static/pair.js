@@ -44,11 +44,35 @@ function makePairing() {
 
     table.appendChild(headerRow);
 
-    // get all players
+    let players = deriveAllPlayers();
+    let pairs = pair(players);
+    for(let i = 0; i < pairs.length; i++) {
+        let row = document.createElement('tr');
+        let n1 = document.createElement('td');
 
-    // create pairings
+        n1.innerText = pairs[i][0].num;
+        let n2 = document.createElement('td');
+        n2.innerText = pairs[i][1].num;
 
-    // append pairings
+        let s1 = document.createElement('td');
+        s1.innerText = pairs[i][0].rating;
+        let s2 = document.createElement('td');
+        s2.innerText = pairs[i][1].rating;
+
+        let p1 = document.createElement('td');
+        p1.innerText = pairs[i][0].player;
+        let p2 = document.createElement('td');
+        p2.innerText = pairs[i][1].player;
+
+        row.appendChild(n1);
+        row.appendChild(s1);
+        row.appendChild(p1);
+        row.appendChild(n2);
+        row.appendChild(s2);
+        row.appendChild(p2);
+
+        table.appendChild(row);
+    }
 
     tableE.appendChild(table);
 
