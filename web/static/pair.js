@@ -2,7 +2,7 @@ function pair(list, next) {
     list.sort((a, b) => Number(b.rating) - Number(a.rating));
     let pairs = [];
     if (list.length % 2 != 0) {
-        pairs.push([list[list.length-1], {player: null, rating: null, score: null, id: null}]);
+        pairs.push([list[list.length-1], {player: null, rating: null, score: null, num: null}]);
         list.splice(list.length, 1);
     }
     let split = [list.splice(0, list.length/2), list];
@@ -46,18 +46,31 @@ function makePairing() {
 
     let players = deriveAllPlayers();
     let pairs = pair(players);
+    pairs.map(pair => {
+        return pair.map(player => {
+            for(let key in player) {
+                if(player[key] === undefined || player[key] === null)  player[key] = 'Waiting'
+            }
+            return player;
+        })
+    })
     for(let i = 0; i < pairs.length; i++) {
         let row = document.createElement('tr');
         let n1 = document.createElement('td');
+
+        console.log(pairs[i]);
+
 
         n1.innerText = pairs[i][0].num;
         let n2 = document.createElement('td');
         n2.innerText = pairs[i][1].num;
 
         let s1 = document.createElement('td');
-        s1.innerText = pairs[i][0].rating;
+        // s1.innerText = pairs[i][0].rating;
+        s1.innerText = '0.0';
         let s2 = document.createElement('td');
-        s2.innerText = pairs[i][1].rating;
+        // s2.innerText = pairs[i][1].rating;
+        s2.innerText = '0.0';
 
         let p1 = document.createElement('td');
         p1.innerText = pairs[i][0].player;
