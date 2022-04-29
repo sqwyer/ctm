@@ -22,6 +22,10 @@ function clickOnElem(elem) {
                 elem.children[1].innerText = name;
                 elem.children[2].innerText = rating;
             }},
+            {type: 'exit', text: 'Delete User', action: () => {
+                getPlayerElemById(splits[0]).remove();
+                reload();
+            }},
             {type: 'exit', text: 'Cancel'}
         ]
     })

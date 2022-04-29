@@ -1,6 +1,25 @@
 var playerstate = [];
 
-function getAllPlayers() {}
+function getAllPlayerElemsAsArray() {
+    let arr = [...playersElem.children[0].children];
+    arr.splice(0, 1);
+    return arr;
+}
+
+function deriveAllPlayers() {
+    let og = getAllPlayerElemsAsArray();
+    let players = [];
+    for(let i = 0; i < og.length; i++) {
+        let spec = {};
+        for(let k = 1; k < og[i].children.length; k++) {
+            spec.num = Number(og[i].children[0].innerText);
+            spec.player = og[i].children[1].innerText;
+            spec.rating = Number(og[i].children[2].innerText);
+        }
+        players.push(spec);
+    }
+    return players;
+}
 
 function getPlayerElemById(id) {
     for(let i = 0; i < playersElem.children[0].children.length; i++) {
@@ -31,4 +50,11 @@ function addPlayer(player, rating) {
     tr.appendChild(tdP);
 
     playersElem.children[0].appendChild(tr);
+}
+
+function reload() {
+    let col = playersElem.children[0].children;
+    for(let i = 1; i < col.length; i++) {
+        col[i].children[0].innerText = (i-1).toString();
+    }
 }
