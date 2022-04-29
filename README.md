@@ -24,6 +24,9 @@ npm run serve
 ##### View Site
 Go to `http://localhost:3000` in your web browser of choice. -->
 
+#### Website
+The web application for this project can be found at [https://sqwyer.github.io/ctm/].
+
 #### Notes
 - `web/` directory will hold all code for the web version
 - `src/` will hold all library info for the package
