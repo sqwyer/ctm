@@ -8,6 +8,7 @@
 npm -v
 ```
 > If this errors, you need to install Node on your machine, visit [https://nodejs.org/en/]
+
 > If this returns a version number, you are safe to continue
 
 ##### Install deps
