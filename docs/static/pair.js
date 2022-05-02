@@ -57,9 +57,7 @@ function makePairing() {
     for(let i = 0; i < pairs.length; i++) {
         let row = document.createElement('tr');
         let n1 = document.createElement('td');
-
-        console.log(pairs[i]);
-
+        // console.log(pairs[i]);
 
         n1.innerText = pairs[i][0].num;
         let n2 = document.createElement('td');
@@ -76,6 +74,14 @@ function makePairing() {
         p1.innerText = pairs[i][0].player;
         let p2 = document.createElement('td');
         p2.innerText = pairs[i][1].player;
+
+        n1.className = 'no-hover';
+        n2.className = 'no-hover';
+        p1.className = 'no-hover';
+        p2.className = 'no-hover';
+
+        s1.addEventListener('click', () => {});
+        s2.addEventListener('click', () => {});
 
         row.appendChild(n1);
         row.appendChild(s1);
